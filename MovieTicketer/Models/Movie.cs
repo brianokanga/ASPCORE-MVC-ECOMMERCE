@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieTicketer.Data;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MovieTicketer.Models

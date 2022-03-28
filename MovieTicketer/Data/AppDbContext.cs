@@ -6,8 +6,7 @@ namespace MovieTicketer.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
-        {
+        
 
-        }
     }
 }

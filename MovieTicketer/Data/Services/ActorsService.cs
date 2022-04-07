@@ -14,12 +14,13 @@ namespace MovieTicketer.Data.Services
         {
             _context = context;
         }
+
         public void Add(Actor actor)
         {
             throw new System.NotImplementedException();
         }
 
-        public Actor Get(int id)
+        public void Delete(int id)
         {
             throw new System.NotImplementedException();
         }
@@ -29,8 +30,13 @@ namespace MovieTicketer.Data.Services
             var results = await _context.Actors.ToListAsync();
             return results;
         }
-        public Actor Update(int id, Actor newActor)
 
+        public Actor GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Actor Update(int id, Actor newActor)
         {
             throw new System.NotImplementedException();
         }

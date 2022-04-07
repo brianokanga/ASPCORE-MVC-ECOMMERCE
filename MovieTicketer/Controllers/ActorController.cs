@@ -1,14 +1,23 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieTicketer.Data.Services;
+using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
 {
     public class ActorController : Controller
     {
-        // GET: ActorController
-        public ActionResult Index()
+        private readonly IActorsService _service;
+
+        public ActorController(IActorsService service)
         {
-            return View();
+            _service = service;
+        }
+        // GET: ActorController
+        public async Task<ActionResult> Index()
+        {
+            var data = await _service.GetAll();
+            return View(data);
         }
 
         // GET: ActorController/Details/5

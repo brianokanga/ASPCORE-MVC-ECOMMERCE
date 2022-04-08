@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieTicketer.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
 {
@@ -11,9 +13,9 @@ namespace MovieTicketer.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var allProducers = _context.Producers.ToList();
+            var allProducers = await _context.Producers.ToListAsync();
             return View();
         }
     }

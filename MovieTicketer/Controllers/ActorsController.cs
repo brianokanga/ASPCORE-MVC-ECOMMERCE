@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
 {
-    public class ActorController : Controller
+    public class ActorsController : Controller
     {
         private readonly IActorsService _service;
 
-        public ActorController(IActorsService service)
+        public ActorsController(IActorsService service)
         {
             _service = service;
         }

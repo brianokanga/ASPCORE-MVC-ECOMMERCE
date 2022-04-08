@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
 {
-    public class MoviesController : Controller
+    public class CinemasController : Controller
     {
         private readonly AppDbContext _context;
-        public MoviesController(AppDbContext context)
+        public CinemasController(AppDbContext context)
         {
             _context = context;
         }
         public async Task<IActionResult> Index()
         {
-            var allProducers = await _context.Movies.ToListAsync();
-            return View();
+            var allCinemas = await _context.Cinemas.ToListAsync();
+            return View(allCinemas);
         }
     }
 }

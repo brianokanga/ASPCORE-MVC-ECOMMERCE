@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
 {
-    public class CinemasController : Controller
+    public class MoviesController : Controller
     {
         private readonly AppDbContext _context;
-        public CinemasController(AppDbContext context)
+        public MoviesController(AppDbContext context)
         {
             _context = context;
         }

@@ -17,14 +17,14 @@ namespace MovieTicketer.Controllers
         // GET: ActorController
         public async Task<ActionResult> Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
 
         // GET: ActorController/Details/5
         public ActionResult Details(int id)
         {
-            var actorDetails = _service.GetById(id);
+            var actorDetails = _service.GetByIdAsync(id);
             if (actorDetails == null)
                 return View("Empty");
             return View();
@@ -46,7 +46,7 @@ namespace MovieTicketer.Controllers
                 return View(actor);
             }
 
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
 

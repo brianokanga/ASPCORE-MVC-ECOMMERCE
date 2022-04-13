@@ -36,9 +36,15 @@ namespace MovieTicketer.Controllers
         // POST: ActorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Task <ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")]Actor actor)
+        public async Task <ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")]Actor actor)
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+
+            _service.Add(actor);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ActorController/Edit/5

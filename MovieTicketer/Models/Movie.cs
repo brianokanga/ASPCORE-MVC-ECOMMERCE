@@ -10,6 +10,8 @@ namespace MovieTicketer.Models
     {
         [Key]
         public int Id { get; set; }
+
+
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
@@ -23,14 +25,16 @@ namespace MovieTicketer.Models
         public List<Actor_Movie> Actors_Movies { get; set; }
 
         //Cinema
-        [ForeignKey("CinemaId")]
         public int CinemaId { get; set; }
+        [ForeignKey("CinemaId")] 
+
         public Cinema Cinema { get; set; }
 
 
         //Producers
-        [ForeignKey("ProducerId")]
         public int ProducerId { get; set; }
+        [ForeignKey("ProducerId")]
+
         public Producer Producer { get; set; }
 
     }

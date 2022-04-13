@@ -27,7 +27,7 @@ namespace MovieTicketer.Controllers
         }
 
         // GET: ActorController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }

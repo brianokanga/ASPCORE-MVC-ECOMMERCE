@@ -24,6 +24,9 @@ namespace MovieTicketer.Controllers
         // GET: ActorController/Details/5
         public ActionResult Details(int id)
         {
+            var actorDetails = _service.GetById(id);
+            if (actorDetails == null)
+                return View("Empty");
             return View();
         }
 

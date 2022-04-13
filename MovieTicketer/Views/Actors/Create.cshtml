@@ -45,3 +45,13 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    <script>
+        $("ProfilePicturePreview").on("change", function(){
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $(this).val(); 
+        })
+    </script>
+}

@@ -9,12 +9,15 @@ namespace MovieTicketer.Models
         public int Id { get; set; }
 
         [Display(Name ="Profile Picture Url")]
+        [Required(ErrorMessage ="Profile picture is required")]
         public string ProfilePictureURL { get; set; }
 
         [Display(Name = "FullName")]
+        [Required(ErrorMessage = "FullName is required")]
         public string FullName { get; set; }
 
         [Display(Name = "Biography")]
+        [Required(ErrorMessage = "Biography is required")]
         public string Bio { get; set; }
 
         //Relationships

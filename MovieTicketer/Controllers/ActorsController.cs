@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieTicketer.Data.Services;
+using MovieTicketer.Models;
 using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
@@ -27,7 +28,7 @@ namespace MovieTicketer.Controllers
         }
 
         // GET: ActorController/Create
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
             return View();
         }
@@ -35,16 +36,9 @@ namespace MovieTicketer.Controllers
         // POST: ActorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public Task <ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")]Actor actor)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            
         }
 
         // GET: ActorController/Edit/5

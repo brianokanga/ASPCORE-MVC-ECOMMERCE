@@ -71,25 +71,25 @@ namespace MovieTicketer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: ActorController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: ActorController/Delete/1
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
         }
 
-        // POST: ActorController/Delete/5
+        // POST: ActorController/Delete/1
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("NotFound");
+
+            
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

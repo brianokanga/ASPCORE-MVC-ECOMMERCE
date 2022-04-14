@@ -21,14 +21,6 @@ namespace MovieTicketer.Controllers
             return View(data);
         }
 
-        // GET: ActorController/Details/5
-        public async Task<ActionResult> Details(int id)
-        {
-            var actorDetails = _service.GetByIdAsync(id);
-            if (actorDetails == null) return View("NotFound");
-            return View();
-        }
-
         // GET: ActorController/Create
         public ActionResult Create()
         {
@@ -37,8 +29,7 @@ namespace MovieTicketer.Controllers
 
         // POST: ActorController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task <ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")]Actor actor)
+        public async Task<ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
@@ -49,17 +40,26 @@ namespace MovieTicketer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: ActorController/Details/5
+        public async Task<ActionResult> Details(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+        
+
         // GET: ActorController/Edit
         public async Task<ActionResult> Edit(int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
             if(actorDetails == null) return View("NotFound");
-            return View();
+            return View(actorDetails);
         }
 
         // POST: ActorController/Edit
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id,[Bind("Id, FullName, ProfilePictureURL, Bio")] Actor actor)
         {
             if (!ModelState.IsValid)

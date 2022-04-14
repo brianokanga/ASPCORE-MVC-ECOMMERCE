@@ -15,7 +15,7 @@ namespace MovieTicketer.Data.Services
             _context = context;
         }
 
-        public async Task  AddAsync(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
             await _context.Actors.AddAsync(actor);
             await _context.SaveChangesAsync();

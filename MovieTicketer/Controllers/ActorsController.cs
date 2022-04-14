@@ -22,11 +22,10 @@ namespace MovieTicketer.Controllers
         }
 
         // GET: ActorController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var actorDetails = _service.GetByIdAsync(id);
-            if (actorDetails == null)
-                return View("Empty");
+            if (actorDetails == null) return View("NotFound");
             return View();
         }
 
@@ -50,25 +49,26 @@ namespace MovieTicketer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: ActorController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: ActorController/Edit
+        public async Task<ActionResult> Edit(int id)
         {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if(actorDetails == null) return View("NotFound");
             return View();
         }
 
-        // POST: ActorController/Edit/5
+        // POST: ActorController/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id,[Bind("Id, FullName, ProfilePictureURL, Bio")] Actor actor)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return View(actor);
             }
-            catch
-            {
-                return View();
-            }
+
+            await _service.UpdateAsync(id,actor);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ActorController/Delete/5

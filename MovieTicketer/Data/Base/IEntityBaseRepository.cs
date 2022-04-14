@@ -6,10 +6,10 @@ namespace MovieTicketer.Data.Base
 {
 	public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
 	{
-		Task<IEnumerable<T>> GetAll();
-		T GetById(int id);
-		void Add(Actor T);
-		Actor Update(int id, Actor entity);
-		void Delete(int id);
+		Task<IEnumerable<T>> GetAllAsync();
+		Task<T> GetByIdAsync(int id);
+		Task AddAsync(T Entity);
+		Task<T> UpdateAsync(int id, T Entity);
+		Task DeleteAsync(int id);
 	}
 }

@@ -9,7 +9,7 @@ namespace MovieTicketer.Data.Base
 		Task<IEnumerable<T>> GetAllAsync();
 		Task<T> GetByIdAsync(int id);
 		Task AddAsync(T Entity);
-		Task<T> UpdateAsync(int id, T Entity);
+		Task UpdateAsync(int id, T Entity);
 		Task DeleteAsync(int id);
 	}
 }

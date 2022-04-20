@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,9 +26,10 @@ namespace MovieTicketer.Data.Base
 		public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
 		
 
-		public Task<T> UpdateAsync(int id, T Entity)
+		public async Task UpdateAsync(int id, T entity)
 		{
-			throw new System.NotImplementedException();
+			EntityEntry entityEntry = _context.Entry(entity);
+			entityEntry.State = EntityState.Modified;
 		}
 	}
 }

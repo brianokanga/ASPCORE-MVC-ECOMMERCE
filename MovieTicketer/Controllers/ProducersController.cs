@@ -27,5 +27,13 @@ namespace MovieTicketer.Controllers
 			if (prodcerDetails == null) return View("NotFound");
 			return View(prodcerDetails);
 		}
+
+		//GET : producers/Create
+		public async Task<IActionResult> Create(int id)
+		{
+			return View();
+		}
+
+
 	}
 }

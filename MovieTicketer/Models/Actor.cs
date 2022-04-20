@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using MovieTicketer.Data.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MovieTicketer.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
         public int Id { get; set; }

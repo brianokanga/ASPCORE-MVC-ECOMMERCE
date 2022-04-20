@@ -1,15 +1,12 @@
-﻿using MovieTicketer.Models;
+﻿using MovieTicketer.Data.Base;
+using MovieTicketer.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MovieTicketer.Data.Services
 {
-    public interface IActorsService
+    public interface IActorsService : IEntityBaseRepository<Actor>
     {
-        Task<IEnumerable<Actor>> GetAllAsync();
-        Task<Actor> GetByIdAsync(int id);
-        Task AddAsync(Actor actor);
-        Task<Actor> UpdateAsync(int id, Actor newActor);
-        Task DeleteAsync(int id);
+       
     }
 }

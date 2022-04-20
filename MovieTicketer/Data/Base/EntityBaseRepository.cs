@@ -12,14 +12,20 @@ namespace MovieTicketer.Data.Base
 		public EntityBaseRepository(AppDbContext context)
 		{
 			_context = context;
+
 		}
-		public async Task AddAsync(T Entity) => await _context.Set<T>().AddAsync(Entity);
+		public async Task AddAsync(T Entity)
+		{
+			await _context.Set<T>().AddAsync(Entity);
+			await _context.SaveChangesAsync();
+		}
 		
 		public async Task DeleteAsync(int id)
 		{
 			var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
 			EntityEntry entityEntry = _context.Entry(entity);
 			entityEntry.State = EntityState.Deleted;
+			await _context.SaveChangesAsync();
 		}
 
 		public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
@@ -31,6 +37,7 @@ namespace MovieTicketer.Data.Base
 		{
 			EntityEntry entityEntry = _context.Entry(entity);
 			entityEntry.State = EntityState.Modified;
+			await _context.SaveChangesAsync();
 		}
 	}
 }

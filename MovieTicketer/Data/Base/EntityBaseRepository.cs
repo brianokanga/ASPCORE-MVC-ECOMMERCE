@@ -15,10 +15,11 @@ namespace MovieTicketer.Data.Base
 		}
 		public async Task AddAsync(T Entity) => await _context.Set<T>().AddAsync(Entity);
 		
-
-		public Task DeleteAsync(int id)
+		public async Task DeleteAsync(int id)
 		{
-			throw new System.NotImplementedException();
+			var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
+			EntityEntry entityEntry = _context.Entry(entity);
+			entityEntry.State = EntityState.Deleted;
 		}
 
 		public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();

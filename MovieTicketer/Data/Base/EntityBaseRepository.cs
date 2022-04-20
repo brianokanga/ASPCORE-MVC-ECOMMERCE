@@ -12,27 +12,18 @@ namespace MovieTicketer.Data.Base
 		{
 			_context = context;
 		}
-		public Task AddAsync(T Entity)
-		{
-			throw new System.NotImplementedException();
-		}
+		public async Task AddAsync(T Entity) => await _context.Set<T>().AddAsync(Entity);
+		
 
 		public Task DeleteAsync(int id)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public async Task<IEnumerable<T>> GetAllAsync()
-		{
-			var results = await _context.Set<T>().ToListAsync();
-			return results;
-		}
-
-		public async Task<T> GetByIdAsync(int id)
-		{
-			var results = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
-			return results;
-		}
+		public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+			 
+		public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
+		
 
 		public Task<T> UpdateAsync(int id, T Entity)
 		{

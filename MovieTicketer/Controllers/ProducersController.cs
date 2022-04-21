@@ -63,5 +63,24 @@ namespace MovieTicketer.Controllers
 			}
 			return View(producer);
 		}
+
+		// GET: ProducersController/Delete/1
+		public async Task<ActionResult> Delete(int id)
+		{
+			var producerDetails = await _service.GetByIdAsync(id);
+			if (producerDetails == null) return View("NotFound");
+			return View(producerDetails);
+		}
+
+		// POST: ProducersController/Delete
+		[HttpPost, ActionName("Delete")]
+		public async Task<ActionResult> DeleteConfirmed(int id)
+		{
+			var producerDetails = await _service.GetByIdAsync(id);
+			if (producerDetails == null) return View("NotFound");
+
+			await _service.DeleteAsync(id);	
+			return RedirectToAction(nameof(Index));
+		}
 	}
 }

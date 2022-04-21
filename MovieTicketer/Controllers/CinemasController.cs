@@ -51,5 +51,18 @@ namespace MovieTicketer.Controllers
             if (cinemaDetails == null) return View("NotFound");
             return View(cinemaDetails);
         }
+
+        // POST: ProducersController/Edit
+        [HttpPost]
+        public async Task<ActionResult> Edit(int id, [Bind("Id,FullName, ProfilePictureURL, Bio")] Cinema cinema)
+        {
+            if (!ModelState.IsValid) return View(cinema);
+            if (id == cinema.Id)
+            {
+                await _service.UpdateAsync(id, cinema);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cinema);
+        }
     }
 }

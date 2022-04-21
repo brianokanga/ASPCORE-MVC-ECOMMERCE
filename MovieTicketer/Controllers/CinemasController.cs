@@ -19,5 +19,13 @@ namespace MovieTicketer.Controllers
             var allCinemas = await _service.GetAllAsync();
             return View(allCinemas);
         }
+
+        //GET : Cinemas/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var cinemaDetails = await _service.GetByIdAsync(id);
+            if (cinemaDetails == null) return View("NotFound");
+            return View(cinemaDetails);
+        }
     }
 }

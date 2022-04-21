@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieTicketer.Data;
 using MovieTicketer.Data.Services;
+using MovieTicketer.Models;
 using System.Threading.Tasks;
 
 namespace MovieTicketer.Controllers
@@ -26,6 +27,21 @@ namespace MovieTicketer.Controllers
             var cinemaDetails = await _service.GetByIdAsync(id);
             if (cinemaDetails == null) return View("NotFound");
             return View(cinemaDetails);
+        }
+
+        // GET: CinemasController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: CinemasController/Create
+        [HttpPost]
+        public async Task<ActionResult> Create([Bind("Logo, Name, Description")] Cinema cinema)
+        {
+            if (!ModelState.IsValid) return View(cinema);
+            await _service.AddAsync(cinema);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

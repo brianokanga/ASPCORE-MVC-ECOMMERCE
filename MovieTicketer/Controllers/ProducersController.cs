@@ -62,7 +62,6 @@ namespace MovieTicketer.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 			return View(producer);
-			
 		}
 	}
 }

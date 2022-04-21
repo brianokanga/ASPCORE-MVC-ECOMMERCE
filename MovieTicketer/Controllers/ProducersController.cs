@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieTicketer.Data;
 using MovieTicketer.Data.Services;
+using MovieTicketer.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,12 +29,24 @@ namespace MovieTicketer.Controllers
 			return View(prodcerDetails);
 		}
 
-		//GET : producers/Create
-		public async Task<IActionResult> Create(int id)
+		// GET: ProducersController/Create
+		public ActionResult Create()
 		{
 			return View();
 		}
 
+		// POST: ProducersController/Create
+		[HttpPost]
+		public async Task<ActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")] Producer producer)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View(producer);
+			}
+
+			await _service.AddAsync(producer);
+			return RedirectToAction(nameof(Index));
+		}
 
 	}
 }

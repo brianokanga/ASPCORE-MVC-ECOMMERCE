@@ -43,5 +43,13 @@ namespace MovieTicketer.Controllers
             await _service.AddAsync(cinema);
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: CinemasController/Edit/1
+        public async Task<ActionResult> Edit(int id)
+        {
+            var cinemaDetails = await _service.GetByIdAsync(id);
+            if (cinemaDetails == null) return View("NotFound");
+            return View(cinemaDetails);
+        }
     }
 }
